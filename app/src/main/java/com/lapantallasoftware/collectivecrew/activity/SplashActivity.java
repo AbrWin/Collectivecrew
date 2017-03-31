@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.lapantallasoftware.collectivecrew.R;
+import com.lapantallasoftware.collectivecrew.ccapp.utils.GeneralLog;
 
 /**
  * Abrwin 30/01/17
@@ -44,7 +45,7 @@ public class SplashActivity extends AppCompatActivity {
 
         private void finishHandler() {
             handler.removeCallbacks(this);
-            Log.d(TAG, "finish handler");
+            GeneralLog.d(TAG, "finish handler");
         }
     }
 
