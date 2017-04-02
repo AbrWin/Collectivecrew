@@ -4,4 +4,5 @@
     <string name="title_activity_spash">SpashActivity</string>
     <string name="logo">logo</string>
     <string name="load">Cargando...</string>
+    <string name="circle_data">M 125 250 C 137.5 83.34 362.5 83.34 375 250 M 125 250 C 137.5 416.66 362.5 416.66 375 250</string>
 </resources>
