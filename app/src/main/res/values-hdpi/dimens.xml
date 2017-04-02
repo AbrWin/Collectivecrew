@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="logo_w">160dp</dimen>
+    <dimen name="logo_h">32dp</dimen>
+    <dimen name="circle_one">25dp</dimen>
+    <dimen name="circle_two">20dp</dimen>
+    <dimen name="circle_three">15dp</dimen>
+</resources>
