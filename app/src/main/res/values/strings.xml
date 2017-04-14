@@ -4,5 +4,17 @@
     <string name="title_activity_spash">SpashActivity</string>
     <string name="logo">logo</string>
     <string name="load">Cargando...</string>
-    <string name="circle_data">M 125 250 C 137.5 83.34 362.5 83.34 375 250 M 125 250 C 137.5 416.66 362.5 416.66 375 250</string>
+    <string name="title_home">Cortometrajes</string>
+    <string name="title_name">Corazón perdido Corazón perdido Corazón perdido</string>
+    <string name="team">Equipo pasteros</string>
+    <string name="myinfo">Dolor sit amet, consectetur
+adipiscing elit. Suspendisse
+sollicitudin ac lorem in porttitor.
+Proin at mauris fringilla,
+mollis ligula non, fermentum
+nibh. Proin non justo convallis.
+Proin at mauris fringilla, dolor</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
