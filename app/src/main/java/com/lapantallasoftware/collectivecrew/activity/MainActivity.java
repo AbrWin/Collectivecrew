@@ -1,8 +1,6 @@
 package com.lapantallasoftware.collectivecrew.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -11,7 +9,6 @@ import android.view.MenuItem;
 import com.lapantallasoftware.collectivecrew.R;
 import com.lapantallasoftware.collectivecrew.ccapp.utils.CollectiveCrewAnaliticts;
 import com.lapantallasoftware.collectivecrew.ccapp.view.ViewCommon;
-import com.lapantallasoftware.collectivecrew.ccapp.view.ViewShortcutList;
 
 /**
  * Abrwin 30/01/17
@@ -41,9 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
