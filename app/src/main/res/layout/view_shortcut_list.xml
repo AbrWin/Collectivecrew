@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D8D8D8"
+    android:background="#EEEEEE"
     tools:context="com.lapantallasoftware.collectivecrew.ccapp.view.ViewShortcutList">
 
 
@@ -10,5 +10,13 @@
         android:id="@+id/recyclerShortCut"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_shortcut" />
+        tools:listitem="@layout/item_shortcut"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_gravity="center" />
+
 </FrameLayout>
