@@ -14,7 +14,7 @@ class ListShortcutEvent {
     public final static int onGooglePlayServicesFailed = 2;
     public final static int onGeneralError = 3;
     public final static int onValuesList = 4;
-    public final static int onValuesEmptyList = 5;
+    public final static int onEmptyList = 5;
 
 
     private int eventType;

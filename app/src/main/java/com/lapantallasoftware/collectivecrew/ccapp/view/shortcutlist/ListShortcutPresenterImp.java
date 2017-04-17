@@ -1,5 +1,6 @@
 package com.lapantallasoftware.collectivecrew.ccapp.view.shortcutlist;
 
+import com.lapantallasoftware.collectivecrew.R;
 import com.lapantallasoftware.collectivecrew.ccapp.helper.EventBus;
 import com.lapantallasoftware.collectivecrew.ccapp.helper.GreenRoboEventBus;
 
@@ -36,16 +37,6 @@ public class ListShortcutPresenterImp implements ListShortcutMVP.Presenter {
         eventBus.unregister(this);
     }
 
-    @Override
-    public void onPause() {
-
-    }
-
-    @Override
-    public void onResume() {
-
-    }
-
     @Subscribe
     @Override
     public void onEventMainThread(ListShortcutEvent event) {
@@ -61,7 +52,6 @@ public class ListShortcutPresenterImp implements ListShortcutMVP.Presenter {
                     if (shortView != null) {
                         shortView.showloading(false);
                         shortView.showEmptylist();
-                        //TODO Mostrar layout de lista vacia
                     }
                     break;
                 case ListShortcutEvent.onBeUserResolvableError:
@@ -73,11 +63,15 @@ public class ListShortcutPresenterImp implements ListShortcutMVP.Presenter {
                 case ListShortcutEvent.onGooglePlayServicesFailed:
                     if (shortView != null) {
                         shortView.showloading(false);
-                        shortView.showGooglePlayServicesError();
+                        shortView.showToastError(event.getErrorMsj());
                     }
                     break;
+                case ListShortcutEvent.onEmptyList:
+                    if (shortView != null) {
+                        shortView.showloading(false);
+                        shortView.showEmptylist();
+                    }
             }
         }
-
     }
 }

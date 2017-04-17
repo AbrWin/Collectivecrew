@@ -2,6 +2,7 @@ package com.lapantallasoftware.collectivecrew.ccapp.view;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -24,7 +28,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
 public class ViewShortcutList extends ViewCommon implements ListShortcutMVP.View, ShortcutAdapter.onItemClickListener {
     private ListShortcutPresenterImp presenter;
     private ShortcutAdapter shortcutAdapter;
@@ -38,6 +41,12 @@ public class ViewShortcutList extends ViewCommon implements ListShortcutMVP.View
     @BindView(R.id.progressBar)
     public ProgressBar progressBar;
 
+    @Nullable
+    @BindView(R.id.emptyList)
+    public ViewStub viewStub;
+
+    private View inflatedView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,8 +59,8 @@ public class ViewShortcutList extends ViewCommon implements ListShortcutMVP.View
     }
 
     @Override
-    public void showToastErrr(String error) {
-        showToastError(error);
+    public void showToastError(String error) {
+        showErrorToast(error);
     }
 
     @Override
@@ -60,13 +69,26 @@ public class ViewShortcutList extends ViewCommon implements ListShortcutMVP.View
     }
 
     @Override
-    public void showEmptylist() {
-
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.onDestroy();
     }
 
     @Override
-    public void showGooglePlayServicesError() {
-        showToastError(getString(R.string.error_playservices));
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
+
+    @Override
+    public void showEmptylist() {
+        if (inflatedView == null) {
+            inflatedView = viewStub.inflate();
+            retryLisValues(inflatedView);
+        } else {
+            ((FrameLayout) rootView).addView(inflatedView);
+            retryLisValues(inflatedView);
+        }
     }
 
     @Override
@@ -90,7 +112,7 @@ public class ViewShortcutList extends ViewCommon implements ListShortcutMVP.View
         Log.d("VALUE-->", String.valueOf(shortListholder.getAdapterPosition()));
     }
 
-    private void showToastError(String error) {
+    private void showErrorToast(String error) {
         Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
     }
 
@@ -100,4 +122,25 @@ public class ViewShortcutList extends ViewCommon implements ListShortcutMVP.View
             dialog.show();
         }
     }
+
+    private void retryLisValues(final View inflatedView) {
+        Button retry = (Button) inflatedView.findViewById(R.id.retry_btn);
+        retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showloading(true);
+                ((FrameLayout) rootView).removeView(inflatedView);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        presenter.getListValues();
+                        handler.removeCallbacks(this);
+                    }
+                }, 2000);
+
+            }
+        });
+    }
+
 }

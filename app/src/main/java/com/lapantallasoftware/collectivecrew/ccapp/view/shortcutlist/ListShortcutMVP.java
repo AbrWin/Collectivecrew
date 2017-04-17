@@ -1,6 +1,7 @@
 package com.lapantallasoftware.collectivecrew.ccapp.view.shortcutlist;
 
 import com.lapantallasoftware.collectivecrew.ccapp.model.Team;
+
 import java.util.List;
 
 /**
@@ -11,11 +12,9 @@ public class ListShortcutMVP {
     public interface View {
         void showloading(boolean show);
 
-        void showToastErrr(String error);
+        void showToastError(String error);
 
         void showEmptylist();
-
-        void showGooglePlayServicesError();
 
         void showGooglePlayServicesDialog(int statusCode);
 
@@ -27,32 +26,16 @@ public class ListShortcutMVP {
 
         void onDestroy();
 
-        void onPause();
-
-        void onResume();
-
         void onEventMainThread(ListShortcutEvent event);
 
         void getListValues();
     }
 
     public interface ListShortcutInteractor {
-        void shortlistContactLisctEvent();
-
-        void unshortlistContactLisctEvent();
-
-        void destroyListener();
-
         void getValues();
     }
 
     public interface ListShortRepository {
-        void shortlistContactLisctEvent();
-
-        void unshortlistContactLisctEvent();
-
-        void destroyListener();
-
         void getValues();
     }
 

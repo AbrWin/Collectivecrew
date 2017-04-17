@@ -34,21 +34,6 @@ public class ListshortRepositoryImp implements ListShortcutMVP.ListShortReposito
     }
 
     @Override
-    public void shortlistContactLisctEvent() {
-
-    }
-
-    @Override
-    public void unshortlistContactLisctEvent() {
-
-    }
-
-    @Override
-    public void destroyListener() {
-
-    }
-
-    @Override
     public void getValues() {
         //Check status Connection
         if (!Connectivity.isOnline(MyApplication.getCtx())) {
@@ -66,7 +51,7 @@ public class ListshortRepositoryImp implements ListShortcutMVP.ListShortReposito
             postEvent(ListShortcutEvent.onBeUserResolvableError, statusCode);
             return false;
         } else if (statusCode != ConnectionResult.SUCCESS) {
-            postEvent(ListShortcutEvent.onGooglePlayServicesFailed);
+            postEvent(ListShortcutEvent.onGooglePlayServicesFailed, MyApplication.getCtx().getString(R.string.error_playservices));
             return false;
         }
         return true;
@@ -110,7 +95,7 @@ public class ListshortRepositoryImp implements ListShortcutMVP.ListShortReposito
                 if(teamList != null && teamList.size() > 0){
                     postEvent(ListShortcutEvent.onValuesList, teamList);
                 }else {
-                    //TODO SEND GENERIAL ERROR
+                   postEvent(ListShortcutEvent.onEmptyList);
                 }
             }
 
