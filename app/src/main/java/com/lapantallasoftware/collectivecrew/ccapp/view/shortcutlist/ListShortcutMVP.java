@@ -9,7 +9,9 @@ import java.util.List;
 
 public class ListShortcutMVP {
     public interface View {
-        void showloading();
+        void showloading(boolean show);
+
+        void showToastErrr(String error);
 
         void showEmptylist();
 

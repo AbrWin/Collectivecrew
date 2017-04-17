@@ -1,8 +1,6 @@
 package com.lapantallasoftware.collectivecrew.ccapp.view.shortcutlist;
 
 import android.text.TextUtils;
-import android.util.Log;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.database.DataSnapshot;
@@ -10,6 +8,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.lapantallasoftware.collectivecrew.R;
 import com.lapantallasoftware.collectivecrew.ccapp.application.MyApplication;
 import com.lapantallasoftware.collectivecrew.ccapp.helper.FirebaseHelper;
 import com.lapantallasoftware.collectivecrew.ccapp.helper.GreenRoboEventBus;
@@ -53,7 +52,7 @@ public class ListshortRepositoryImp implements ListShortcutMVP.ListShortReposito
     public void getValues() {
         //Check status Connection
         if (!Connectivity.isOnline(MyApplication.getCtx())) {
-            eventBus.post(ListShortcutEvent.onGeneralError);
+            postEvent(ListShortcutEvent.onGeneralError, MyApplication.getCtx().getString(R.string.error_connec));
         } else if (!isGooglePlayServicesAvaliable()) {
             return;
         } else {
@@ -107,12 +106,12 @@ public class ListshortRepositoryImp implements ListShortcutMVP.ListShortReposito
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<List<Team>> t = new GenericTypeIndicator<List<Team>>() {};
                 List<Team> teamList = dataSnapshot.getValue(t);
+                database.getReference(TEAM_KEY).removeEventListener(this);
                 if(teamList != null && teamList.size() > 0){
                     postEvent(ListShortcutEvent.onValuesList, teamList);
                 }else {
                     //TODO SEND GENERIAL ERROR
                 }
-                Log.d("VALUE-->",teamList.get(0).getTeam().getProducer());
             }
 
             @Override

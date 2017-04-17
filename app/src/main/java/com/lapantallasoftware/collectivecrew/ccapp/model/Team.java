@@ -10,6 +10,7 @@ public class Team {
     private int dislike;
     private int like;
     private Producction team;
+    private String team_name;
     private int view;
     private String url_video;
 
@@ -67,5 +68,13 @@ public class Team {
 
     public void setUrl_video(String url_video) {
         this.url_video = url_video;
+    }
+
+    public String getTeam_name() {
+        return team_name;
+    }
+
+    public void setTeam_name(String team_name) {
+        this.team_name = team_name;
     }
 }

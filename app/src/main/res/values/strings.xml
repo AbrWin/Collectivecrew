@@ -5,15 +5,8 @@
     <string name="logo">logo</string>
     <string name="load">Cargando...</string>
     <string name="title_home">Cortometrajes</string>
-    <string name="title_name">Corazón perdido Corazón perdido Corazón perdido</string>
-    <string name="team">Equipo pasteros</string>
-    <string name="myinfo">Dolor sit amet, consectetur
-adipiscing elit. Suspendisse
-sollicitudin ac lorem in porttitor.
-Proin at mauris fringilla,
-mollis ligula non, fermentum
-nibh. Proin non justo convallis.
-Proin at mauris fringilla, dolor</string>
+    <string name="error_connec">¡Ups! Hay un problema de conexión...</string>
+    <string name="error_playservices">Se requiere Google Play Services para usar la app</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -14,9 +14,10 @@
         android:visibility="gone"/>
 
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/progressBar"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:visibility="visible" />
 
 </FrameLayout>
