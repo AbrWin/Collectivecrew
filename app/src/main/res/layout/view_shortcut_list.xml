@@ -6,12 +6,19 @@
     tools:context="com.lapantallasoftware.collectivecrew.ccapp.view.ViewShortcutList">
 
 
+    <ViewStub
+        android:id="@+id/emptyList"
+        android:inflatedId="@+id/subViewEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout="@layout/empy_list" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerShortCut"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_shortcut"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        tools:listitem="@layout/item_shortcut" />
 
     <ProgressBar
         android:id="@+id/progressBar"

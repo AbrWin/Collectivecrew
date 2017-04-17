@@ -110,7 +110,7 @@ public class ListshortRepositoryImp implements ListShortcutMVP.ListShortReposito
                 if(teamList != null && teamList.size() > 0){
                     postEvent(ListShortcutEvent.onValuesList, teamList);
                 }else {
-                    //TODO SEND GENERIAL ERROR
+                   postEvent(ListShortcutEvent.onEmptyList);
                 }
             }
 

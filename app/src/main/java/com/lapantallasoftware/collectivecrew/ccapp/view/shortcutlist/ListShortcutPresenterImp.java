@@ -61,7 +61,6 @@ public class ListShortcutPresenterImp implements ListShortcutMVP.Presenter {
                     if (shortView != null) {
                         shortView.showloading(false);
                         shortView.showEmptylist();
-                        //TODO Mostrar layout de lista vacia
                     }
                     break;
                 case ListShortcutEvent.onBeUserResolvableError:
@@ -76,6 +75,11 @@ public class ListShortcutPresenterImp implements ListShortcutMVP.Presenter {
                         shortView.showGooglePlayServicesError();
                     }
                     break;
+                case ListShortcutEvent.onEmptyList:
+                    if(shortView != null){
+                        shortView.showloading(false);
+                        shortView.showEmptylist();
+                    }
             }
         }
 
