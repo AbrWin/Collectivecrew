@@ -59,13 +59,25 @@ public class ViewShortcutList extends ViewCommon implements ListShortcutMVP.View
     }
 
     @Override
-    public void showToastErrr(String error) {
-        showToastError(error);
+    public void showToastError(String error) {
+        showErrorToast(error);
     }
 
     @Override
     public void showloading(boolean show) {
         progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.onDestroy();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
     }
 
     @Override
@@ -77,11 +89,6 @@ public class ViewShortcutList extends ViewCommon implements ListShortcutMVP.View
             ((FrameLayout) rootView).addView(inflatedView);
             retryLisValues(inflatedView);
         }
-    }
-
-    @Override
-    public void showGooglePlayServicesError() {
-        showToastError(getString(R.string.error_playservices));
     }
 
     @Override
@@ -105,7 +112,7 @@ public class ViewShortcutList extends ViewCommon implements ListShortcutMVP.View
         Log.d("VALUE-->", String.valueOf(shortListholder.getAdapterPosition()));
     }
 
-    private void showToastError(String error) {
+    private void showErrorToast(String error) {
         Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
     }
 

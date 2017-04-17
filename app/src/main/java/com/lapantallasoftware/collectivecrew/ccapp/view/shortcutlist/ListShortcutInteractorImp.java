@@ -11,21 +11,6 @@ public class ListShortcutInteractorImp implements ListShortcutMVP.ListShortcutIn
     }
 
     @Override
-    public void shortlistContactLisctEvent() {
-
-    }
-
-    @Override
-    public void unshortlistContactLisctEvent() {
-
-    }
-
-    @Override
-    public void destroyListener() {
-
-    }
-
-    @Override
     public void getValues() {
         repositoryImp.getValues();
     }
