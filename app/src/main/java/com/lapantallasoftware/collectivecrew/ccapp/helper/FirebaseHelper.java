@@ -21,7 +21,7 @@ public class FirebaseHelper {
         this.database = FirebaseDatabase.getInstance();
     }
 
-    public FirebaseDatabase voidgetDataBaseReference() {
+    public FirebaseDatabase getDatabaseReference() {
         return database;
     }
 }
