@@ -13,156 +13,238 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         android:gravity="center"
-        android:text="@string/hello_blank_fragment"
+        android:text="@string/title_video"
         android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <VideoView
-        android:id="@+id/videoView"
-        android:layout_width="wrap_content"
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
         android:layout_height="@dimen/video_view" />
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/banner_video"
-        android:background="#585858"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp">
+        android:layout_height="wrap_content"
+        android:visibility="visible">
 
-        <TextView
-            android:id="@+id/title_detail"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/subtitle_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment"
-            android:textColor="@color/colorPrimary" />
+            <LinearLayout
+                android:id="@+id/video_content"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/banner_video"
+                android:background="#585858"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/title_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/hello_blank_fragment"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/subtitle_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/hello_blank_fragment"
+                    android:textColor="@color/colorPrimary" />
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/icon_content"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@android:color/white"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp">
+            </LinearLayout>
 
-        <RatingBar
-            android:id="@+id/ratingBar2"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:progressBackgroundTint="@color/colorPrimaryDark"
-            android:rating="3.5"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:targetApi="lollipop" />
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/icon_content"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@android:color/white"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp">
 
-        <ImageView
-            android:id="@+id/icon_hand_up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/logo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toRightOf="@+id/ratingBar2"
-            app:layout_constraintRight_toLeftOf="@+id/like"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_up_hand" />
+                <RatingBar
+                    android:id="@+id/ratingBar2"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:progressBackgroundTint="@color/colorPrimaryDark"
+                    android:rating="3.5"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:targetApi="lollipop" />
 
-        <TextView
-            android:id="@+id/like"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="17dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:text="@string/number"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/icon_hand_down"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/icon_hand_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="@string/logo"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintLeft_toRightOf="@+id/ratingBar2"
+                    app:layout_constraintRight_toLeftOf="@+id/like_txt"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_up_hand" />
 
-        <ImageView
-            android:id="@+id/icon_hand_down"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/logo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/deslike"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_down_hand" />
+                <TextView
+                    android:id="@+id/like_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="17dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/number"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/icon_hand_down"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/deslike"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="17dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="18dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:text="@string/number"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/icon_view"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/icon_hand_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="@string/logo"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/deslike_txt"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_down_hand" />
 
-        <ImageView
-            android:id="@+id/icon_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/logo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/views"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_view"
-            tools:ignore="RtlCompat" />
+                <TextView
+                    android:id="@+id/deslike_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="17dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="18dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/number"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/icon_view"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/views"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:text="@string/number"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
-    </android.support.constraint.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/icon_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="@string/logo"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/views_txt"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_view"
+                    tools:ignore="RtlCompat" />
 
+                <TextView
+                    android:id="@+id/views_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/number"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5" />
+            </android.support.constraint.ConstraintLayout>
 
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardContent"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:minHeight="?attr/listPreferredItemHeight">
+
+                <android.support.v4.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/synopsis"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/synpsis"
+                            android:textColor="@color/colorPrimary" />
+
+                        <TextView
+                            android:id="@+id/synopsis_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                        android:text="@string/error_playservices" />
+
+                    </LinearLayout>
+                </android.support.v4.widget.NestedScrollView>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardConte"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="4dp"
+                android:minHeight="?attr/listPreferredItemHeight">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/synpsis"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/error_playservices" />
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

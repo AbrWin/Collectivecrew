@@ -1,10 +1,12 @@
 package com.lapantallasoftware.collectivecrew.ccapp.model;
 
+import java.io.Serializable;
+
 /**
  * Created by AbrWin on 15/04/17.
  */
 
-public class Team {
+public class Team implements Serializable{
     private String title;
     private String synopsis;
     private int dislike;
@@ -13,6 +15,7 @@ public class Team {
     private String team_name;
     private int view;
     private String url_video;
+    private String url_img;
 
     public String getTitle() {
         return title;
@@ -76,5 +79,13 @@ public class Team {
 
     public void setTeam_name(String team_name) {
         this.team_name = team_name;
+    }
+
+    public String getUrl_img() {
+        return url_img;
+    }
+
+    public void setUrl_img(String url_img) {
+        this.url_img = url_img;
     }
 }

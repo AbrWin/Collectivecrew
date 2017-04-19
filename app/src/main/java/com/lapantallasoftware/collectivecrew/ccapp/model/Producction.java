@@ -1,10 +1,12 @@
 package com.lapantallasoftware.collectivecrew.ccapp.model;
 
+import java.io.Serializable;
+
 /**
  * Created by AbrWin on 15/04/17.
  */
 
-public class Producction {
+public class Producction implements Serializable{
     private String director;
     private String edition;
     private String photographer;

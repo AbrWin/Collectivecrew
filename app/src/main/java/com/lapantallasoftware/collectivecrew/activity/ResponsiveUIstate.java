@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.lapantallasoftware.collectivecrew.R;
+import com.lapantallasoftware.collectivecrew.ccapp.view.ViewDetailShortcut;
 import com.lapantallasoftware.collectivecrew.ccapp.view.ViewShortcutList;
 
 /**
@@ -22,7 +23,7 @@ public enum ResponsiveUIstate {
     DETAILPROYECT() {
         @Override
         public Fragment execute(MainActivity activity) {
-            return colocaOuBuscaFragmentNaTela(activity, R.id.fragment_container, ViewShortcutList.class);
+            return colocaOuBuscaFragmentNaTela(activity, R.id.fragment_container, ViewDetailShortcut.class);
         }
     },
     HOME() {
@@ -71,5 +72,14 @@ public enum ResponsiveUIstate {
     public static ResponsiveUIstate setState(ResponsiveUIstate newState){
         ResponsiveUIstate state = newState;
         return state;
+    }
+
+    public Bundle getBundle() {
+        return bundle;
+    }
+
+    public ResponsiveUIstate setBundle(Bundle bundle) {
+        this.bundle = bundle;
+        return this;
     }
 }
