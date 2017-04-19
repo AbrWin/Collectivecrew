@@ -4,7 +4,7 @@ package com.lapantallasoftware.collectivecrew.ccapp.view;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.StorageReference;
 import com.lapantallasoftware.collectivecrew.R;
 import com.lapantallasoftware.collectivecrew.ccapp.helper.FirebaseHelper;
 import com.lapantallasoftware.collectivecrew.ccapp.model.Team;
@@ -54,6 +53,26 @@ public class ViewDetailShortcut extends ViewCommon {
     @BindView(R.id.video_view)
     public VideoView videoView;
 
+    @Nullable
+    @BindView(R.id.director_name)
+    public TextView directorName;
+
+    @Nullable
+    @BindView(R.id.producer_name)
+    public TextView producerName;
+
+    @Nullable
+    @BindView(R.id.photo_name)
+    public TextView photoName;
+
+    @Nullable
+    @BindView(R.id.sound_name)
+    public TextView soungName;
+
+    @Nullable
+    @BindView(R.id.edition_name)
+    public TextView editionName;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,12 +84,17 @@ public class ViewDetailShortcut extends ViewCommon {
         if (getArguments() != null) {
             //Text
             Team teamElement = (Team) getArguments().getSerializable("teamValue");
-            title_detail.setText(teamElement.getTitle());
-            subtitle_detail.setText(teamElement.getTeam_name());
-            synopsis_content.setText(teamElement.getSynopsis());
-            like_txt.setText(String.valueOf(teamElement.getLike()));
-            deslike_txt.setText(String.valueOf(teamElement.getDislike()));
-            views_txt.setText(String.valueOf(teamElement.getView()));
+            title_detail.setText(getInfoText(teamElement.getTitle()));
+            subtitle_detail.setText(getInfoText(teamElement.getTeam_name()));
+            synopsis_content.setText(getInfoText(teamElement.getSynopsis()));
+            like_txt.setText(getInfoText(String.valueOf(teamElement.getLike())));
+            deslike_txt.setText(getInfoText(String.valueOf(teamElement.getDislike())));
+            views_txt.setText(getInfoText(String.valueOf(teamElement.getView())));
+            directorName.setText(getInfoText(teamElement.getTeam().getDirector()));
+            producerName.setText(getInfoText(teamElement.getTeam().getPhotographer()));
+            photoName.setText(getInfoText(teamElement.getTeam().getPhotographer()));
+            soungName.setText(getInfoText(teamElement.getTeam().getSound()));
+            editionName.setText(getInfoText(teamElement.getTeam().getEdition()));
 
             //Video
             FirebaseHelper.getInstance().getDataStorageRefecence().getReferenceFromUrl(reference).child(teamElement.getUrl_video()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -85,6 +109,10 @@ public class ViewDetailShortcut extends ViewCommon {
             });
         }
         return rootView;
+    }
+
+    private String getInfoText(String infoText) {
+        return !TextUtils.isEmpty(infoText) ? infoText : "";
     }
 
 }

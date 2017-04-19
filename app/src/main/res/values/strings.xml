@@ -6,14 +6,17 @@
     <string name="load">Cargando...</string>
     <string name="title_home">Cortometrajes</string>
     <string name="error_connec">¡Ups! Hay un problema de conexión...</string>
-    <string name="error_playservices">Se requiere Google Play Services para usar la app, Se requiere Google Play Services para usar la app, Se requiere Google Play Services para usar la app, Se requiere Google Play Services para usar la app, Se requiere Google Play Services para usar la app, Se requiere Google Play Services para usar la appSe requiere Google Play Services para usar la app, Se requiere Google Play Services para usar la app, Se requiere Google Play Services para usar la appSe requiere Google Play Services para usar la app, Se requiere Google Play Services para usar la app, Se requiere Google Play Services para usar la appSe requiere Google Play Services para usar la app, Se requiere Google Play Services para usar la app, Se requiere Google Play Services para usar la app</string>
+    <string name="error_playservices">Se requiere Google Play Services para usar la app</string>
     <string name="empty_list">Ups! Parece que hay un problema</string>
     <string name="retry">Reintentar</string>
     <string name="synpsis">Sinópsis</string>
-    <string name="title_head_detail"></string>
     <string name="number">310</string>
     <string name="title_video">Primer Encuentro cinematográfico</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="team">Equipo</string>
+    <string name="casting">Reparto</string>
+    <string name="director">Director:</string>
+    <string name="producer">Productor:</string>
+    <string name="photo">Fotógrafo:</string>
+    <string name="sound">Sonidista:</string>
+    <string name="edition">Edición:</string>
 </resources>
