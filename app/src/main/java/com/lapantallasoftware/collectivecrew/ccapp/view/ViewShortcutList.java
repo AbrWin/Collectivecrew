@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.lapantallasoftware.collectivecrew.R;
+import com.lapantallasoftware.collectivecrew.activity.MainActivity;
+import com.lapantallasoftware.collectivecrew.activity.ResponsiveUIstate;
 import com.lapantallasoftware.collectivecrew.ccapp.adapter.ShortcutAdapter;
 import com.lapantallasoftware.collectivecrew.ccapp.model.Team;
 import com.lapantallasoftware.collectivecrew.ccapp.view.shortcutlist.ListShortcutMVP;
@@ -109,7 +111,11 @@ public class ViewShortcutList extends ViewCommon implements ListShortcutMVP.View
 
     @Override
     public void onClick(ShortcutAdapter.ShortListholder shortListholder) {
-        Log.d("VALUE-->", String.valueOf(shortListholder.getAdapterPosition()));
+        if (shortListholder.team != null) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("teamValue", shortListholder.team);
+            ((MainActivity) getActivity()).changeFragment(ResponsiveUIstate.DETAILPROYECT.setBundle(bundle));
+        }
     }
 
     private void showErrorToast(String error) {

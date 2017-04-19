@@ -23,7 +23,8 @@
             android:id="@+id/line1"
             android:layout_width="150dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="0dp"
             android:orientation="vertical">
 
             <TextView
@@ -31,17 +32,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:textSize="16sp"
-                android:lines="1" />
+                android:lines="1"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/subtitle_short"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:lines="1"
-                android:textSize="12sp"
                 android:layout_marginTop="-2dp"
-                android:textColor="@android:color/holo_green_light" />
+                android:lines="1"
+                android:textColor="@android:color/holo_green_light"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/synopsis"
@@ -54,14 +55,13 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/short_video"
+            android:id="@+id/img_video"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/line1"
             android:layout_toRightOf="@+id/line1"
             android:contentDescription="@string/logo"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img_shortcut"
-            tools:ignore="RtlHardcoded" />
+            app:srcCompat="@drawable/ic_video_camera_placeholder" />
     </RelativeLayout>
 
 

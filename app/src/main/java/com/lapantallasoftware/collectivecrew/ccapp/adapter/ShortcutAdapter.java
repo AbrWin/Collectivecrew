@@ -1,16 +1,21 @@
 package com.lapantallasoftware.collectivecrew.ccapp.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.lapantallasoftware.collectivecrew.R;
+import com.lapantallasoftware.collectivecrew.ccapp.helper.FirebaseHelper;
 import com.lapantallasoftware.collectivecrew.ccapp.model.Team;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,12 +42,22 @@ public class ShortcutAdapter extends RecyclerView.Adapter<ShortcutAdapter.ShortL
     }
 
     @Override
-    public void onBindViewHolder(ShortListholder holder, int position) {
+    public void onBindViewHolder(final ShortListholder holder, int position) {
         holder.team = teamList.get(position);
-        //Context context = holder.itemView.getContext();
+        final Context context = holder.itemView.getContext();
         holder.title_short.setText(getInfoText(holder.team.getTitle()));
         holder.subtitle_short.setText(getInfoText(holder.team.getTeam_name()));
         holder.synopsis.setText(getInfoText(holder.team.getSynopsis()));
+
+        String reference = context.getString(R.string.bucket);
+        FirebaseHelper.getInstance().getDataStorageRefecence().getReferenceFromUrl(reference).child(getInfoText(holder.team.getUrl_img())).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                if (!TextUtils.isEmpty(uri.toString())) {
+                    Picasso.with(context).load(uri.toString()).into(holder.img_video);
+                }
+            }
+        });
     }
 
     @Override
@@ -63,11 +78,14 @@ public class ShortcutAdapter extends RecyclerView.Adapter<ShortcutAdapter.ShortL
         @BindView(R.id.synopsis)
         public TextView synopsis;
 
+        @BindView(R.id.img_video)
+        public ImageView img_video;
+
         public Team team;
 
         public ShortListholder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
         }
 
@@ -82,6 +100,6 @@ public class ShortcutAdapter extends RecyclerView.Adapter<ShortcutAdapter.ShortL
     }
 
     private String getInfoText(String infoText) {
-        return !TextUtils.isEmpty(infoText) ? infoText: "";
+        return !TextUtils.isEmpty(infoText) ? infoText : "";
     }
 }
