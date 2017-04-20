@@ -1,6 +1,7 @@
 package com.lapantallasoftware.collectivecrew.ccapp.view;
 
 
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.widget.VideoView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.lapantallasoftware.collectivecrew.R;
+import com.lapantallasoftware.collectivecrew.activity.MainActivity;
 import com.lapantallasoftware.collectivecrew.ccapp.helper.FirebaseHelper;
 import com.lapantallasoftware.collectivecrew.ccapp.model.Team;
 
@@ -79,7 +81,9 @@ public class ViewDetailShortcut extends ViewCommon {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.view_detail_shortcut, container, false);
         String reference = getString(R.string.bucket);
-
+        ((MainActivity)getActivity()).setTitleToolbar("");
+        ((MainActivity)getActivity()).showBackBtn(true);
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ButterKnife.bind(this, rootView);
         if (getArguments() != null) {
             //Text
@@ -115,4 +119,9 @@ public class ViewDetailShortcut extends ViewCommon {
         return !TextUtils.isEmpty(infoText) ? infoText : "";
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+    }
 }

@@ -1,12 +1,12 @@
 package com.lapantallasoftware.collectivecrew.ccapp.view;
 
 import android.app.Dialog;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +53,9 @@ public class ViewShortcutList extends ViewCommon implements ListShortcutMVP.View
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.view_shortcut_list, container, false);
+        ((MainActivity) getActivity()).setTitleToolbar(getString(R.string.title_home));
+        ((MainActivity) getActivity()).showBackBtn(false);
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ButterKnife.bind(this, rootView);
         presenter = new ListShortcutPresenterImp(this);
         presenter.onCreate();
