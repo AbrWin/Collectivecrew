@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.lapantallasoftware.collectivecrew.R;
 import com.lapantallasoftware.collectivecrew.ccapp.utils.CollectiveCrewAnaliticts;
@@ -17,14 +18,17 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = MainActivity.class.getSimpleName();
     private ResponsiveUIstate state;
     protected ViewCommon actualFragment;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.title_home));
-        setSupportActionBar(toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setTitleToolbar(getString(R.string.title_home));
+            setSupportActionBar(toolbar);
+        }
         CollectiveCrewAnaliticts.sendAnaliticsEvent(TAG, "Init app", "Home");
         changeFragment(ResponsiveUIstate.SHORTCUT);
     }
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -54,17 +59,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
     public ViewCommon getActualFragment() {
         return actualFragment;
     }
 
     public void setActualFragment(ViewCommon actualFragment) {
         this.actualFragment = actualFragment;
+    }
+
+
+    public void showBackBtn(boolean showBackBtn) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(showBackBtn);
+            getSupportActionBar().setDisplayShowHomeEnabled(showBackBtn);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    public void setTitleToolbar(String text) {
+        toolbar.setTitle(text);
     }
 
 
