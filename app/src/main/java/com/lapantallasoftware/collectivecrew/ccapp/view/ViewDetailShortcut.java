@@ -20,7 +20,8 @@ import com.lapantallasoftware.collectivecrew.R;
 import com.lapantallasoftware.collectivecrew.activity.MainActivity;
 import com.lapantallasoftware.collectivecrew.ccapp.helper.FirebaseHelper;
 import com.lapantallasoftware.collectivecrew.ccapp.model.Team;
-import com.lapantallasoftware.collectivecrew.ccapp.utils.GeneralLog;
+import com.lapantallasoftware.collectivecrew.ccapp.view.detailshortcut.DetailShortcutMVP;
+import com.lapantallasoftware.collectivecrew.ccapp.view.detailshortcut.DetailShortcutPresenterImp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +29,7 @@ import butterknife.ButterKnife;
 /**
  * Create by AbrWind =D
  */
-public class ViewDetailShortcut extends ViewCommon {
+public class ViewDetailShortcut extends ViewCommon implements DetailShortcutMVP.View {
 
     @Nullable
     @BindView(R.id.title_detail)
@@ -83,8 +84,9 @@ public class ViewDetailShortcut extends ViewCommon {
     public ImageView img;
 
     private int stopPosition;
-    private MediaController mediaController;
     private int numberViews;
+    private DetailShortcutPresenterImp detailPresenter;
+    private int positionElement;
 
 
     @Override
@@ -96,21 +98,11 @@ public class ViewDetailShortcut extends ViewCommon {
         ((MainActivity) getActivity()).showBackBtn(true);
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ButterKnife.bind(this, rootView);
+        detailPresenter = new DetailShortcutPresenterImp(this);
+        detailPresenter.onCreate();
         if (getArguments() != null) {
-            //Text
             final Team teamElement = (Team) getArguments().getSerializable("teamValue");
-            numberViews = teamElement.getView();
-            title_detail.setText(getInfoText(teamElement.getTitle()));
-            subtitle_detail.setText(getInfoText(teamElement.getTeam_name()));
-            synopsis_content.setText(getInfoText(teamElement.getSynopsis()));
-            like_txt.setText(getInfoText(String.valueOf(teamElement.getLike())));
-            deslike_txt.setText(getInfoText(String.valueOf(teamElement.getDislike())));
-            views_txt.setText(String.valueOf(numberViews));
-            directorName.setText(getInfoText(teamElement.getTeam().getDirector()));
-            producerName.setText(getInfoText(teamElement.getTeam().getPhotographer()));
-            photoName.setText(getInfoText(teamElement.getTeam().getPhotographer()));
-            soungName.setText(getInfoText(teamElement.getTeam().getSound()));
-            editionName.setText(getInfoText(teamElement.getTeam().getEdition()));
+            setInfoInView(teamElement);
 
             //Video
             FirebaseHelper.getInstance().getDataStorageRefecence().getReferenceFromUrl(reference).child(teamElement.getUrl_video()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -120,12 +112,21 @@ public class ViewDetailShortcut extends ViewCommon {
                     mediaController.setAnchorView(videoView);
                     videoView.setMediaController(mediaController);
                     videoView.setVideoPath(uri.toString());
+                    videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        @Override
+                        public void onPrepared(MediaPlayer mp) {
+                            String actualViews = String.valueOf((numberViews + 1));
+                            views_txt.setText(actualViews);
+                            if (positionElement >= 0) {
+                                detailPresenter.registerViewsDB(positionElement);
+                            }
+                        }
+                    });
+
                     videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         @Override
                         public void onCompletion(MediaPlayer mediaPlayer) {
                             mediaPlayer.stop();
-                            String actualViews = String.valueOf((numberViews+1));
-                            views_txt.setText(actualViews);
                         }
                     });
                 }
@@ -142,6 +143,13 @@ public class ViewDetailShortcut extends ViewCommon {
     public void onDestroyView() {
         super.onDestroyView();
         videoView.suspend();
+        detailPresenter.onDestroy();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        detailPresenter.onDestroy();
     }
 
     @Override
@@ -156,5 +164,28 @@ public class ViewDetailShortcut extends ViewCommon {
         super.onResume();
         videoView.seekTo(stopPosition);
         videoView.start();
+    }
+
+    private void setInfoInView(Team teamElement) {
+        if (teamElement != null) {
+            numberViews = teamElement.getView();
+            title_detail.setText(getInfoText(teamElement.getTitle()));
+            subtitle_detail.setText(getInfoText(teamElement.getTeam_name()));
+            synopsis_content.setText(getInfoText(teamElement.getSynopsis()));
+            like_txt.setText(getInfoText(String.valueOf(teamElement.getLike())));
+            deslike_txt.setText(getInfoText(String.valueOf(teamElement.getDislike())));
+            views_txt.setText(String.valueOf(numberViews));
+            directorName.setText(getInfoText(teamElement.getTeam().getDirector()));
+            producerName.setText(getInfoText(teamElement.getTeam().getPhotographer()));
+            photoName.setText(getInfoText(teamElement.getTeam().getPhotographer()));
+            soungName.setText(getInfoText(teamElement.getTeam().getSound()));
+            editionName.setText(getInfoText(teamElement.getTeam().getEdition()));
+            positionElement = teamElement.getPositionElement();
+        }
+    }
+
+    @Override
+    public void retryInfoView() {
+        detailPresenter.registerViewsDB(positionElement);
     }
 }

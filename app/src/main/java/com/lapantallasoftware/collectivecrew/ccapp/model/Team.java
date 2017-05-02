@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by AbrWin on 15/04/17.
  */
 
-public class Team implements Serializable{
+public class Team implements Serializable {
     private String title;
     private String synopsis;
     private int dislike;
@@ -16,6 +16,7 @@ public class Team implements Serializable{
     private int view;
     private String url_video;
     private String url_img;
+    private int positionElement;
 
     public String getTitle() {
         return title;
@@ -87,5 +88,13 @@ public class Team implements Serializable{
 
     public void setUrl_img(String url_img) {
         this.url_img = url_img;
+    }
+
+    public int getPositionElement() {
+        return positionElement;
+    }
+
+    public void setPositionElement(int positionElement) {
+        this.positionElement = positionElement;
     }
 }
