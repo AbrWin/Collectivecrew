@@ -17,12 +17,30 @@
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
-    <VideoView
-        android:id="@+id/video_view"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/video_view"
-        android:layout_gravity="center"
-        android:scaleType="centerCrop" />
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <VideoView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_height="@dimen/video_view" />
+
+        <ImageView
+            android:id="@+id/icon_play"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="@+id/video_view"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/logo"
+            android:visibility="gone"
+            app:srcCompat="@drawable/mr_ic_play_dark" />
+
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -70,6 +88,7 @@
                 android:paddingStart="20dp">
 
                 <RatingBar
+                    android:visibility="gone"
                     android:id="@+id/ratingBar2"
                     style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
@@ -84,6 +103,7 @@
                     tools:targetApi="lollipop" />
 
                 <ImageView
+                    android:visibility="gone"
                     android:id="@+id/icon_hand_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -100,6 +120,7 @@
                     app:srcCompat="@drawable/ic_up_hand" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/like_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
@@ -114,6 +135,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
+                    android:visibility="gone"
                     android:id="@+id/icon_hand_down"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
@@ -128,6 +150,7 @@
                     app:srcCompat="@drawable/ic_down_hand" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/deslike_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
