@@ -115,6 +115,7 @@ public class ViewShortcutList extends ViewCommon implements ListShortcutMVP.View
     @Override
     public void onClick(ShortcutAdapter.ShortListholder shortListholder) {
         if (shortListholder.team != null) {
+            shortListholder.team.setPositionElement(shortListholder.getAdapterPosition());
             Bundle bundle = new Bundle();
             bundle.putSerializable("teamValue", shortListholder.team);
             ((MainActivity) getActivity()).changeFragment(ResponsiveUIstate.DETAILPROYECT.setBundle(bundle));
