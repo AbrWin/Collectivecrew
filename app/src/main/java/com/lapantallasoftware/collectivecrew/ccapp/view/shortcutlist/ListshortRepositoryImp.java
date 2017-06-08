@@ -1,6 +1,7 @@
 package com.lapantallasoftware.collectivecrew.ccapp.view.shortcutlist;
 
 import android.text.TextUtils;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.database.DataSnapshot;
@@ -86,10 +87,11 @@ public class ListshortRepositoryImp implements ListShortcutMVP.ListShortReposito
     }
 
     private void getListTeams() {
+        final GenericTypeIndicator<List<Team>> t = new GenericTypeIndicator<List<Team>>() {
+        };
         database.getReference(TEAM_KEY).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<List<Team>> t = new GenericTypeIndicator<List<Team>>() {};
                 List<Team> teamList = dataSnapshot.getValue(t);
                 database.getReference(TEAM_KEY).removeEventListener(this);
                 if(teamList != null && teamList.size() > 0){

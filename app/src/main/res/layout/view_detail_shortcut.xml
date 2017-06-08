@@ -88,7 +88,7 @@
                 android:paddingStart="20dp">
 
                 <RatingBar
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/ratingBar2"
                     style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"

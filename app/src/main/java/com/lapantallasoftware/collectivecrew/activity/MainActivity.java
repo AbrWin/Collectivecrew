@@ -84,7 +84,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container).getClass().getSimpleName().equals("ViewShortcutList")) {
+            finish();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     public void setTitleToolbar(String text) {
